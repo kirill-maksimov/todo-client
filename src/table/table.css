@@ -1,0 +1,16 @@
+.table-wrapper {
+    padding-top: 50px;
+}
+
+.icon {
+    height: 1em;
+    width: 1em;
+}
+
+.completed {
+    opacity: 50%;
+}
+
+table {
+    border: 1px solid #dee2e6;
+}
