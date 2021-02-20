@@ -1,28 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Table from "../table/table";
 import AdditionForm from "../addition-form/addition-form";
 
-const MOCKED_TASKS = [
-  {
-    id: 1,
-    title: 'Finish the task by Friday',
-    completed: true,
-    isImportant: true,
-  },
-  {
-    id: 2,
-    title: 'Go to hang out',
-    completed: false,
-    isImportant: false,
-  },
-];
-
 function App() {
+  const [items, setItems] = useState([]);
   return (
     <>
-      <AdditionForm />
-      <Table tasks={MOCKED_TASKS} />
+      <AdditionForm items={items} setItems={setItems} />
+      <Table items={items} setItems={setItems} />
     </>
   );
 }

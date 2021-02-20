@@ -1,9 +1,22 @@
 import React from 'react';
 import './addition-form.css';
 
-function AdditionForm() {
+function AdditionForm(props) {
+  const { items, setItems } = props;
+  console.log('addition-form', items);
+  const addTask = (data) => {
+    fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(data)
+    });
+  };
+
   return (
-    <form>
+    // TODO: rewrite addTask with the POST endpoint
+    <form onSubmit={addTask()}>
       <div className="mb-3">
         <label htmlFor="inputTitle" className="form-label">{'Add ToDo Title'}</label>
         <input type="text" className="form-control" id="inputTitle" />
