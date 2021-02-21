@@ -3,7 +3,6 @@ import './addition-form.css';
 
 function AdditionForm(props) {
   const { items, setItems } = props;
-  console.log('addition-form', items);
   const addTask = (data) => {
     fetch('/', {
       method: 'POST',
@@ -12,6 +11,7 @@ function AdditionForm(props) {
       },
       body: JSON.stringify(data)
     });
+    console.log("addition");
   };
 
   return (

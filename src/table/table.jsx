@@ -28,7 +28,8 @@ function Table(props) {
   useEffect(() => {
     // TODO: rewrite with the GET endpoint
     fetch('/').then(response => setItems(response.json()));
-  }, [items]);
+    console.log('useeffect');
+  }, []);
 
   const changeStatus = () => {
     fetch('/').then(response => setItems(response.json()));
@@ -61,7 +62,7 @@ function Table(props) {
                   id="flexCheckChecked"
                   checked={task.completed}
                   // TODO: rewrite with the POST endpoint (id needed)
-                  onChange={() =>changeStatus(task.id)}
+                  // onChange={() =>changeStatus(task.id)}
                 />
               </td>
               <td>{task.isImportant ? <img src={starIcon} className="icon" alt="star"/> : ''}</td>
@@ -71,7 +72,7 @@ function Table(props) {
                   className="icon"
                   alt="delete"
                   // TODO: rewrite with the POST endpoint (id needed)
-                  onClick={deleteTask(task.id)}
+                  // onClick={deleteTask(task.id)}
                 />
               </td>
             </tr>
