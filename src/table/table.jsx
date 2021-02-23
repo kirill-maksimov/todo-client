@@ -1,43 +1,23 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import starIcon from '../utils/star.png';
 import trashIcon from '../utils/trash.png';
+import { getTasks, changeStatus, deleteTask } from './table.action';
 import './table.css';
+import axios from "axios";
 
-// TODO: delete mocked data
-const tasks = [
-  {
-    id: 1,
-    title: 'Finish the task by Friday',
-    completed: true,
-    isImportant: true,
-  },
-  {
-    id: 2,
-    title: 'Go to hang out',
-    completed: false,
-    isImportant: false,
-  },
-];
-
-function Table(props) {
-  const {items, setItems} = props;
+function Table() {
   const TABLE_HEAD = ['#', 'Title', 'Completed', 'Important', 'Delete'];
 
-  console.log('table', items);
+  const tasks = useSelector(state => state.tasks);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO: rewrite with the GET endpoint
-    fetch('/').then(response => setItems(response.json()));
-    console.log('useeffect');
+    const res = axios.get('http://127.0.0.1:8080/api/todos').then(response => response.data);
+    setTimeout(() => console.log(res), 1000);
+    dispatch(getTasks());
   }, []);
-
-  const changeStatus = () => {
-    fetch('/').then(response => setItems(response.json()));
-  };
-
-  const deleteTask = () => {
-    fetch('/').then(response => setItems(response.json()));
-  };
 
   return (
     <div className="table-wrapper">
@@ -61,8 +41,7 @@ function Table(props) {
                   type="checkbox" value=""
                   id="flexCheckChecked"
                   checked={task.completed}
-                  // TODO: rewrite with the POST endpoint (id needed)
-                  // onChange={() =>changeStatus(task.id)}
+                  onChange={() =>dispatch(changeStatus(task.id))}
                 />
               </td>
               <td>{task.isImportant ? <img src={starIcon} className="icon" alt="star"/> : ''}</td>
@@ -71,8 +50,7 @@ function Table(props) {
                   src={trashIcon}
                   className="icon"
                   alt="delete"
-                  // TODO: rewrite with the POST endpoint (id needed)
-                  // onClick={deleteTask(task.id)}
+                  onClick={() => dispatch(deleteTask(task.id))}
                 />
               </td>
             </tr>
