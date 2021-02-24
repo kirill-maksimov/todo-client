@@ -5,7 +5,7 @@ import trashIcon from '../utils/trash.png';
 import { getTasks, changeStatus, deleteTask } from './table.action';
 import './table.css';
 
-function Table() {
+function TableContainer() {
   const TABLE_HEAD = ['#', 'Title', 'Completed', 'Important', 'Delete'];
 
   const tasks = useSelector(state => state.tasks && state.tasks.data);
@@ -14,7 +14,7 @@ function Table() {
 
   useEffect(() => {
     dispatch(getTasks());
-  }, []);
+  });
 
   return (
     <div className="table-wrapper">
@@ -59,4 +59,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default TableContainer;

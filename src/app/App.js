@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Table from "../table/table";
-import AdditionForm from "../addition-form/addition-form";
+import TableContainer from "../table/table.container";
+import AdditionFormContainer from "../addition-form/addition-form.container";
 
 function App() {
   return (
     <>
-      <AdditionForm />
-      <Table />
+      <AdditionFormContainer />
+      <TableContainer />
     </>
   );
 }

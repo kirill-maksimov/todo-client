@@ -3,19 +3,17 @@ import { useDispatch } from "react-redux";
 import { addTask } from "./addition-form.action";
 import './addition-form.css';
 
-function AdditionForm() {
+function AdditionFormContainer() {
   const [title, setTitle] = useState('');
   const [isImportant, setIsImportant] = useState(false);
-  const [completed, setCompleted] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleText = event => setTitle(event.target.value);
-  const handleCheckboxImportant = event => setIsImportant(event.target.value);
-  const handleCheckboxCompleted = event => setCompleted(event.target.value);
+  const handleCheckboxImportant = event => setIsImportant(event.target.checked);
   const handleSubmit = event => {
     event.preventDefault();
-    return dispatch(addTask({title, isImportant, completed}));
+    return dispatch(addTask({title, isImportant}));
   }
 
   return (
@@ -44,4 +42,4 @@ function AdditionForm() {
   );
 }
 
-export default AdditionForm;
+export default AdditionFormContainer;
