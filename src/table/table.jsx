@@ -8,7 +8,7 @@ import './table.css';
 function Table() {
   const TABLE_HEAD = ['#', 'Title', 'Completed', 'Important', 'Delete'];
 
-  const tasks = useSelector(state => state.tasks);
+  const tasks = useSelector(state => state.tasks && state.tasks.data);
 
   const dispatch = useDispatch();
 

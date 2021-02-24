@@ -8,16 +8,17 @@ import {
 
 export function* getTasks() {
   try {
-    const result = yield call(axios.get('http://127.0.0.1:8080/api/todos').then(response => response.data));
+    const result = yield call(axios.get, 'http://127.0.0.1:8080/api/todos');
     yield put({ type: GET_TASKS_SUCCESS, result });
   } catch (error) {
+    console.error(error);
     yield put({ type: GET_TASKS_ERROR, error });
   }
 }
 
 export function* changeStatus(action) {
   try {
-    const result = yield call(axios.post('http://127.0.0.1:8080//api/changeStatus'));
+    const result = yield call(axios.post, 'http://127.0.0.1:8080//api/changeStatus', action.payload);
     yield put({ type: CHANGE_STATUS_SUCCESS, result });
   } catch (error) {
     yield put({ type: CHANGE_STATUS_ERROR, error });
@@ -26,7 +27,7 @@ export function* changeStatus(action) {
 
 export function* deleteTask(action) {
   try {
-    const result = yield call(axios.post('http://127.0.0.1:8080//api/deleteTask'));
+    const result = yield call(axios.post, 'http://127.0.0.1:8080//api/deleteTask', action.payload);
     yield put({ type: DELETE_TASK_SUCCESS, result });
   } catch (error) {
     yield put({ type: DELETE_TASK_ERROR, error });
