@@ -39,15 +39,6 @@ function AdditionForm() {
         />
         <label className="form-check-label" htmlFor="check1">Does your task have important status?</label>
       </div>
-      <div className="mb-3 form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="check2"
-          onChange={handleCheckboxCompleted}
-        />
-        <label className="form-check-label" htmlFor="check2">Is your task completed?</label>
-      </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   );

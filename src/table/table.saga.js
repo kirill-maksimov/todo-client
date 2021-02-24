@@ -6,7 +6,7 @@ import {
   DELETE_TASK, DELETE_TASK_SUCCESS, DELETE_TASK_ERROR,
 } from "../consts/actions-types";
 
-export function* getTasks(action) {
+export function* getTasks() {
   try {
     const result = yield call(axios.get('http://127.0.0.1:8080/api/todos').then(response => response.data));
     yield put({ type: GET_TASKS_SUCCESS, result });
