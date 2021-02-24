@@ -4,7 +4,6 @@ import starIcon from '../utils/star.png';
 import trashIcon from '../utils/trash.png';
 import { getTasks, changeStatus, deleteTask } from './table.action';
 import './table.css';
-import axios from "axios";
 
 function Table() {
   const TABLE_HEAD = ['#', 'Title', 'Completed', 'Important', 'Delete'];
@@ -14,8 +13,6 @@ function Table() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const res = axios.get('http://127.0.0.1:8080/api/todos').then(response => response.data);
-    setTimeout(() => console.log(res), 1000);
     dispatch(getTasks());
   }, []);
 

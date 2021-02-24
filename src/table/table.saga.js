@@ -9,7 +9,6 @@ import {
 export function* getTasks(action) {
   try {
     const result = yield call(axios.get('http://127.0.0.1:8080/api/todos').then(response => response.data));
-    console.log('+++', result);
     yield put({ type: GET_TASKS_SUCCESS, result });
   } catch (error) {
     yield put({ type: GET_TASKS_ERROR, error });

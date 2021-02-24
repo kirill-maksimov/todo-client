@@ -11,7 +11,7 @@ function reducer (state = defaultState, action) {
     case GET_TASKS_SUCCESS:
       return {
         ...state,
-        tasks: action.payload,
+        tasks: action.result,
       }
     case ADD_TASK_SUCCESS:
       return {
