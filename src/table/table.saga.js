@@ -6,10 +6,11 @@ import {
   DELETE_TASK, DELETE_TASK_SUCCESS, DELETE_TASK_ERROR,
 } from "../consts/actions-types";
 import { getTasks } from './table.action';
+import { BASE_URL } from "../consts/base-url"
 
 export function* getTasksSaga() {
   try {
-    const result = yield call(axios.get, 'http://127.0.0.1:8080/api/todos');
+    const result = yield call(axios.get, `${BASE_URL}api/todos`);
     yield put({ type: GET_TASKS_SUCCESS, result });
   } catch (error) {
     console.error(error);
@@ -19,7 +20,7 @@ export function* getTasksSaga() {
 
 export function* changeStatus(action) {
   try {
-    yield call(axios.post, 'http://127.0.0.1:8080/api/changeStatus', JSON.stringify(action.payload));
+    yield call(axios.post, `${BASE_URL}api/changeStatus`, JSON.stringify(action.payload));
     yield put(getTasks());
     yield put({ type: CHANGE_STATUS_SUCCESS });
   } catch (error) {
@@ -29,7 +30,7 @@ export function* changeStatus(action) {
 
 export function* deleteTask(action) {
   try {
-    yield call(axios.post, 'http://127.0.0.1:8080/api/deleteTask', JSON.stringify(action.payload));
+    yield call(axios.post, `${BASE_URL}api/deleteTask`, JSON.stringify(action.payload));
     yield put(getTasks());
     yield put({ type: DELETE_TASK_SUCCESS });
   } catch (error) {
