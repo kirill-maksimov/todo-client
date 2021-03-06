@@ -19,10 +19,10 @@
     "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon --inspect=0.0.0.0:9229 server.js",
     "build": "react-scripts build",
-    "test": "mocha",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test": "mocha ./**/*.js"
   },
   "eslintConfig": {
     "extends": [
