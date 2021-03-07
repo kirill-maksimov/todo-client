@@ -14,13 +14,10 @@ services:
          
   tests:
     container_name: tests
-    image: esi_hw1_frontend
+    image: esi_hw1_frontend_test
     build:
       context: .
-      dockerfile: Dockerfile
-    volumes:
-      - '.:/src/app'
-      - '/src/app/node_modules'
+      dockerfile: Dockerfile-test
     restart: always
     expose:
       - 3001

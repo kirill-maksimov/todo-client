@@ -1,12 +1,27 @@
-var webdriver = require('selenium-webdriver');
+// var webdriver = require('selenium-webdriver');
 const assert = require('chai').assert;
 var jsdom = require('mocha-jsdom')
 
+
+// const chromeCapabilities = webdriver.Capabilities.chrome();
+// chromeCapabilities.set('chromeOptions', {args: ['--headless', '--disable-dev-shm-usage']});
+
+// const driver = new webdriver.Builder()
+//   .forBrowser('chrome')
+//   .withCapabilities(chromeCapabilities)
+//   .build();
+
+require('chromedriver');
+var webdriver = require('selenium-webdriver');
+var driver = new webdriver.Builder()
+  .forBrowser('chrome')
+  .build();
+  
+// const driverProvider = require('./driverProvider.js')
+// var driver = driverProvider.getDriver();
+
 By = webdriver.By;
 until = webdriver.until;
-
-var driver = new webdriver.Builder().forBrowser('chrome').build();
-
 
 describe( 'ToDo Application' , function(){
 
