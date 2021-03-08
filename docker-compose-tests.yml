@@ -1,35 +1,37 @@
 version: '3.1'
 
 services:
-  api-be:
-    container_name: api-be
-    image: esi-hw1-backend
+  api:
+    container_name: esi-hw1-backend-optimized
+    image: esi-hw1-backend-optimized
     build:
-      context: ./../esi-hw1-backend
-    restart: always
-    expose:
-      - 8080
-    networks:
-      - esi-hw1
-         
-  tests:
-    container_name: tests
-    image: esi_hw1_frontend_test
+      context: ../esi-hw1-backend
+      dockerfile: Dockerfile-optimized
+
+  client:
+    container_name: client
     build:
       context: .
-      dockerfile: Dockerfile-test
+
+  proxy:
+    container_name: proxy
+    build:
+      context: ../esi-hw1-service-config
     restart: always
+
+  # the proxy won't start if mystery is not available
+  mystery:
+    container_name: mystery
+    restart: always
+    image: swaggerapi/swagger-ui
     expose:
-      - 3001
-    depends_on:
-      - api-be
-    command: ["npm", "test"]
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    networks:
-      - esi-hw1
+      - 8080
 
-
-networks:
-  esi-hw1:
-    driver: bridge
+  cypress:
+    # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
+    container_name: todo-client-cypress
+    image: todo-client-cypress
+    build:
+      context: .
+      dockerfile: ./Dockerfile-test
+    working_dir: /e2e
