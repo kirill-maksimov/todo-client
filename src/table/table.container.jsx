@@ -14,7 +14,7 @@ function TableContainer() {
 
   useEffect(() => {
     dispatch(getTasks());
-  });
+  }, []);
 
   return (
     <div className="table-wrapper">
