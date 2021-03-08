@@ -2,34 +2,27 @@ version: '3.1'
 
 services:
   api:
-    container_name: esi-hw1-backend-optimized
     image: esi-hw1-backend-optimized
     build:
       context: ../esi-hw1-backend
       dockerfile: Dockerfile-optimized
 
   client:
-    container_name: client
+    image: esi-hw1-frontend
     build:
       context: .
 
   proxy:
-    container_name: proxy
+    image: esi-hw1-proxy
     build:
       context: ../esi-hw1-service-config
-    restart: always
 
   # the proxy won't start if mystery is not available
   mystery:
-    container_name: mystery
-    restart: always
     image: swaggerapi/swagger-ui
-    expose:
-      - 8080
 
   cypress:
     # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
-    container_name: todo-client-cypress
     image: todo-client-cypress
     environment:
       - CYPRESS_baseUrl=http://proxy:8080
