@@ -31,6 +31,8 @@ services:
     # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
     container_name: todo-client-cypress
     image: todo-client-cypress
+    environment:
+      - CYPRESS_baseUrl=http://proxy:8080
     build:
       context: .
       dockerfile: ./Dockerfile-test
