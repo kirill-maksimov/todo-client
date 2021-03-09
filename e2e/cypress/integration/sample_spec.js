@@ -1,5 +1,3 @@
-import { BASE_URL } from '../../src/consts/base-url';
-
 describe('My First Test', () => {
     it('Check that tests are running', () => {
         expect(true).to.equal(true)
@@ -7,9 +5,8 @@ describe('My First Test', () => {
 })
 
 describe('Running frontend', () => {
-    it('Check that frontend page is running on port 8080', () => {
-        // if you run locally the port should be 3000
-        cy.visit(BASE_URL)
+    it('Check that frontend page is running', () => {
+        cy.visit(Cypress.config().baseUrl)
     })
 })
 
